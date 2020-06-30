@@ -1,0 +1,40 @@
+<title>[NOIP2008] 笨小猴</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstring&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;iostream&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;cmath&gt;</span><span class="pl-cp"></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-kt">int</span> <span class="pl-nf">judge</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">){</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">==</span><span class="pl-mi">1</span> <span class="pl-o">||</span> <span class="pl-n">n</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">)</span><span class="pl-k">return</span> <span class="pl-nb">false</span><span class="pl-p">;</span>
+        <span class="pl-kt">bool</span> <span class="pl-n">flag</span><span class="pl-o">=</span><span class="pl-nb">true</span><span class="pl-p">;</span>
+        <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">2</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">sqrt</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-p">);</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+                <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">%</span><span class="pl-n">i</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+                        <span class="pl-n">flag</span><span class="pl-o">=</span><span class="pl-nb">false</span><span class="pl-p">;</span>
+                        <span class="pl-k">break</span><span class="pl-p">;</span>
+                <span class="pl-p">}</span>
+        <span class="pl-p">}</span>
+        <span class="pl-k">return</span> <span class="pl-n">flag</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+	<span class="pl-kt">char</span> <span class="pl-n">word</span><span class="pl-p">[</span><span class="pl-mi">105</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-p">{</span><span class="pl-mi">0</span><span class="pl-p">};</span>
+	<span class="pl-kt">int</span> <span class="pl-n">hash</span><span class="pl-p">[</span><span class="pl-mi">130</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-p">{</span><span class="pl-mi">0</span><span class="pl-p">};</span>
+	<span class="pl-kt">int</span> <span class="pl-n">maxn</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">,</span><span class="pl-n">minn</span><span class="pl-o">=</span><span class="pl-mh">0x7fffffff</span><span class="pl-p">;</span>
+	<span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%s&quot;</span><span class="pl-p">,</span><span class="pl-n">word</span><span class="pl-p">);</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-mi">105</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+	        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">word</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">])</span><span class="pl-k">break</span><span class="pl-p">;</span>
+	        <span class="pl-n">hash</span><span class="pl-p">[</span><span class="pl-n">word</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]]</span><span class="pl-o">++</span><span class="pl-p">;</span>
+	<span class="pl-p">}</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;</span><span class="pl-mi">130</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+	        <span class="pl-n">maxn</span><span class="pl-o">=</span><span class="pl-n">max</span><span class="pl-p">(</span><span class="pl-n">maxn</span><span class="pl-p">,</span><span class="pl-n">hash</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]);</span>
+	        <span class="pl-c1">//printf(&quot;%d &quot;,minn);</span>
+	        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">hash</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">])</span><span class="pl-n">minn</span><span class="pl-o">=</span><span class="pl-n">min</span><span class="pl-p">(</span><span class="pl-n">minn</span><span class="pl-p">,</span><span class="pl-n">hash</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]);</span>
+	<span class="pl-p">}</span>
+	<span class="pl-c1">//printf(&quot;%d %d\n&quot;,maxn,minn);</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">judge</span><span class="pl-p">(</span><span class="pl-n">maxn</span><span class="pl-o">-</span><span class="pl-n">minn</span><span class="pl-p">)){</span>
+	        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;Lucky Word</span><span class="pl-se">\n</span><span class="pl-s">%d&quot;</span><span class="pl-p">,</span><span class="pl-n">maxn</span><span class="pl-o">-</span><span class="pl-n">minn</span><span class="pl-p">);</span>
+	<span class="pl-p">}</span>
+	<span class="pl-k">else</span><span class="pl-p">{</span>
+	        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;No Answer</span><span class="pl-se">\n</span><span class="pl-s">0&quot;</span><span class="pl-p">);</span>
+	<span class="pl-p">}</span>
+	<span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

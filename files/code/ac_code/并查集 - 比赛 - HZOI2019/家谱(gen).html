@@ -1,0 +1,36 @@
+<title>家谱(gen)</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;algorithm&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;string&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;iostream&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;map&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#define MAXN 50005</span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-n">map</span><span class="pl-o">&lt;</span><span class="pl-n">string</span><span class="pl-p">,</span><span class="pl-n">string</span><span class="pl-o">&gt;</span> <span class="pl-n">f</span><span class="pl-p">;</span>
+<span class="pl-n">string</span> <span class="pl-nf">find</span><span class="pl-p">(</span><span class="pl-n">string</span> <span class="pl-n">x</span><span class="pl-p">){</span>
+    <span class="pl-k">return</span> <span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">x</span><span class="pl-p">]</span><span class="pl-o">==</span><span class="pl-n">x</span><span class="pl-o">?</span><span class="pl-nl">x</span><span class="pl-p">:(</span><span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">x</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">find</span><span class="pl-p">(</span><span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">x</span><span class="pl-p">]));</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">void</span> <span class="pl-nf">join</span><span class="pl-p">(</span><span class="pl-n">string</span> <span class="pl-n">a</span><span class="pl-p">,</span><span class="pl-n">string</span> <span class="pl-n">b</span><span class="pl-p">){</span>
+    <span class="pl-c1">//cout&lt;&lt;2&lt;&lt;find(a)&lt;&lt;&quot; &quot;&lt;&lt;find(b)&lt;&lt;endl;</span>
+    <span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">find</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-p">)]</span><span class="pl-o">=</span><span class="pl-n">find</span><span class="pl-p">(</span><span class="pl-n">b</span><span class="pl-p">);</span>
+    <span class="pl-c1">//cout&lt;&lt;3&lt;&lt;find(a)&lt;&lt;&quot; &quot;&lt;&lt;find(b)&lt;&lt;endl;</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+    <span class="pl-n">string</span> <span class="pl-n">cmd</span><span class="pl-p">;</span>
+    <span class="pl-n">string</span> <span class="pl-n">cfather</span><span class="pl-p">;</span>
+    <span class="pl-k">do</span><span class="pl-p">{</span>
+        <span class="pl-n">cin</span><span class="pl-o">&gt;&gt;</span><span class="pl-n">cmd</span><span class="pl-p">;</span>
+        <span class="pl-n">string</span> <span class="pl-n">name</span><span class="pl-o">=</span><span class="pl-n">cmd</span><span class="pl-p">.</span><span class="pl-n">substr</span><span class="pl-p">(</span><span class="pl-mi">1</span><span class="pl-p">,</span><span class="pl-n">cmd</span><span class="pl-p">.</span><span class="pl-n">length</span><span class="pl-p">()</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">);</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">cmd</span><span class="pl-p">[</span><span class="pl-mi">0</span><span class="pl-p">]</span><span class="pl-o">==</span><span class="pl-sc">&#39;#&#39;</span><span class="pl-p">){</span>
+            <span class="pl-n">cfather</span><span class="pl-o">=</span><span class="pl-n">name</span><span class="pl-p">;</span>
+            <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">f</span><span class="pl-p">.</span><span class="pl-n">count</span><span class="pl-p">(</span><span class="pl-n">name</span><span class="pl-p">))</span><span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">name</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">name</span><span class="pl-p">;</span>
+        <span class="pl-p">}</span><span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">cmd</span><span class="pl-p">[</span><span class="pl-mi">0</span><span class="pl-p">]</span><span class="pl-o">==</span><span class="pl-sc">&#39;+&#39;</span><span class="pl-p">){</span>
+            <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">f</span><span class="pl-p">.</span><span class="pl-n">count</span><span class="pl-p">(</span><span class="pl-n">name</span><span class="pl-p">))</span><span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">name</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">name</span><span class="pl-p">;</span>
+            <span class="pl-c1">//cout&lt;&lt;1&lt;&lt;cfather&lt;&lt;&quot; &quot;&lt;&lt;name&lt;&lt;endl;</span>
+            <span class="pl-n">join</span><span class="pl-p">(</span><span class="pl-n">name</span><span class="pl-p">,</span><span class="pl-n">cfather</span><span class="pl-p">);</span>
+            <span class="pl-c1">//cout&lt;&lt;find(name)&lt;&lt;endl;</span>
+        <span class="pl-p">}</span><span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">cmd</span><span class="pl-p">[</span><span class="pl-mi">0</span><span class="pl-p">]</span><span class="pl-o">==</span><span class="pl-sc">&#39;?&#39;</span><span class="pl-p">){</span>
+            <span class="pl-n">cout</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">name</span><span class="pl-o">&lt;&lt;</span><span class="pl-s">&quot; &quot;</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">find</span><span class="pl-p">(</span><span class="pl-n">name</span><span class="pl-p">)</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">endl</span><span class="pl-p">;;</span>
+        <span class="pl-p">}</span>
+    <span class="pl-p">}</span><span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-n">cmd</span><span class="pl-o">!=</span><span class="pl-s">&quot;$&quot;</span><span class="pl-p">);</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

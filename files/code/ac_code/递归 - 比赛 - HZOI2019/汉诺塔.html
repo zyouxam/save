@@ -1,0 +1,22 @@
+<title>汉诺塔</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cm">/*</span>
+<span class="pl-cm">3 a b c</span>
+<span class="pl-cm">*/</span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;stdio.h&gt;</span><span class="pl-cp"></span>
+<span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">;</span>
+<span class="pl-kt">void</span> <span class="pl-nf">f</span><span class="pl-p">(</span><span class="pl-kt">char</span> <span class="pl-n">from</span><span class="pl-p">,</span><span class="pl-kt">int</span> <span class="pl-n">k</span><span class="pl-p">,</span><span class="pl-kt">char</span> <span class="pl-n">to</span><span class="pl-p">,</span><span class="pl-kt">char</span> <span class="pl-n">help</span><span class="pl-p">){</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">k</span><span class="pl-o">==</span><span class="pl-mi">1</span><span class="pl-p">){</span>
+		<span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d:%c-&gt;%c</span><span class="pl-se">\n</span><span class="pl-s">&quot;</span><span class="pl-p">,</span><span class="pl-n">k</span><span class="pl-p">,</span><span class="pl-n">from</span><span class="pl-p">,</span><span class="pl-n">to</span><span class="pl-p">);</span>
+		<span class="pl-k">return</span><span class="pl-p">;</span>
+	<span class="pl-p">}</span>
+	<span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-n">from</span><span class="pl-p">,</span><span class="pl-n">k</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">,</span><span class="pl-n">help</span><span class="pl-p">,</span><span class="pl-n">to</span><span class="pl-p">);</span>
+	<span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d:%c-&gt;%c</span><span class="pl-se">\n</span><span class="pl-s">&quot;</span><span class="pl-p">,</span><span class="pl-n">k</span><span class="pl-p">,</span><span class="pl-n">from</span><span class="pl-p">,</span><span class="pl-n">to</span><span class="pl-p">);</span>
+	<span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-n">help</span><span class="pl-p">,</span><span class="pl-n">k</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">,</span><span class="pl-n">to</span><span class="pl-p">,</span><span class="pl-n">from</span><span class="pl-p">);</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;hanoi.in&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;r&quot;</span><span class="pl-p">,</span><span class="pl-n">stdin</span><span class="pl-p">);</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;hanoi.out&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;w&quot;</span><span class="pl-p">,</span><span class="pl-n">stdout</span><span class="pl-p">);</span>
+	<span class="pl-kt">char</span> <span class="pl-n">from</span><span class="pl-p">,</span><span class="pl-n">to</span><span class="pl-p">,</span><span class="pl-n">help</span><span class="pl-p">;</span>
+	<span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d %c %c %c&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">from</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">help</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">to</span><span class="pl-p">);</span>
+	<span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-n">from</span><span class="pl-p">,</span><span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-n">to</span><span class="pl-p">,</span><span class="pl-n">help</span><span class="pl-p">);</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

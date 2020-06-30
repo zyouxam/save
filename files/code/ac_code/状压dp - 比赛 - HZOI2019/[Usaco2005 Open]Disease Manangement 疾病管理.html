@@ -1,0 +1,46 @@
+<title>[Usaco2005 Open]Disease Manangement 疾病管理</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span> <span class="pl-cpf">&lt;iostream&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span> <span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span> <span class="pl-cpf">&lt;cstring&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span> <span class="pl-cpf">&lt;bitset&gt;</span><span class="pl-cp"></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-cp">#define gc getchar()</span>
+<span class="pl-kr">inline</span> <span class="pl-kt">int</span> <span class="pl-nf">read</span><span class="pl-p">(){</span>
+    <span class="pl-kt">int</span> <span class="pl-n">res</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-kt">char</span> <span class="pl-n">ch</span><span class="pl-o">=</span><span class="pl-n">gc</span><span class="pl-p">;</span>
+    <span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">isdigit</span><span class="pl-p">(</span><span class="pl-n">ch</span><span class="pl-p">))</span><span class="pl-n">ch</span><span class="pl-o">=</span><span class="pl-n">gc</span><span class="pl-p">;</span>
+    <span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-n">isdigit</span><span class="pl-p">(</span><span class="pl-n">ch</span><span class="pl-p">)){</span><span class="pl-n">res</span><span class="pl-o">=</span><span class="pl-p">(</span><span class="pl-n">res</span><span class="pl-o">&lt;&lt;</span><span class="pl-mi">3</span><span class="pl-p">)</span><span class="pl-o">+</span><span class="pl-p">(</span><span class="pl-n">res</span><span class="pl-o">&lt;&lt;</span><span class="pl-mi">1</span><span class="pl-p">)</span><span class="pl-o">+</span><span class="pl-p">(</span><span class="pl-n">ch</span><span class="pl-o">^</span><span class="pl-mi">48</span><span class="pl-p">);</span><span class="pl-n">ch</span><span class="pl-o">=</span><span class="pl-n">gc</span><span class="pl-p">;}</span>
+    <span class="pl-k">return</span> <span class="pl-n">res</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">,</span> <span class="pl-n">m</span><span class="pl-p">,</span> <span class="pl-n">k</span><span class="pl-p">;</span>
+<span class="pl-kt">int</span> <span class="pl-n">eve</span><span class="pl-p">[</span><span class="pl-mi">1005</span><span class="pl-p">];</span>
+<span class="pl-kt">int</span> <span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-mi">1</span><span class="pl-o">&lt;&lt;</span><span class="pl-mi">16</span><span class="pl-p">];</span>
+<span class="pl-kt">int</span> <span class="pl-n">ans</span><span class="pl-p">;</span>
+
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">()</span>
+<span class="pl-p">{</span>
+    <span class="pl-n">n</span> <span class="pl-o">=</span> <span class="pl-n">read</span><span class="pl-p">(),</span> <span class="pl-n">m</span> <span class="pl-o">=</span> <span class="pl-n">read</span><span class="pl-p">(),</span> <span class="pl-n">k</span> <span class="pl-o">=</span> <span class="pl-n">read</span><span class="pl-p">();</span>
+    <span class="pl-k">for</span> <span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span> <span class="pl-o">=</span> <span class="pl-mi">1</span> <span class="pl-p">;</span> <span class="pl-n">i</span> <span class="pl-o">&lt;=</span> <span class="pl-n">n</span> <span class="pl-p">;</span> <span class="pl-n">i</span> <span class="pl-o">++</span><span class="pl-p">)</span>
+    <span class="pl-p">{</span>
+        <span class="pl-kt">int</span> <span class="pl-n">x</span> <span class="pl-o">=</span> <span class="pl-n">read</span><span class="pl-p">();</span>
+        <span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-n">x</span><span class="pl-o">--</span><span class="pl-p">)</span>
+        <span class="pl-p">{</span>
+            <span class="pl-kt">int</span> <span class="pl-n">y</span> <span class="pl-o">=</span> <span class="pl-n">read</span><span class="pl-p">();</span>
+            <span class="pl-n">eve</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]</span> <span class="pl-o">|=</span> <span class="pl-p">(</span><span class="pl-mi">1</span><span class="pl-o">&lt;&lt;</span><span class="pl-p">(</span><span class="pl-n">y</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">));</span>
+        <span class="pl-p">}</span>
+    <span class="pl-p">}</span>
+    <span class="pl-k">for</span> <span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span> <span class="pl-o">=</span> <span class="pl-p">(</span><span class="pl-mi">1</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">m</span><span class="pl-p">)</span><span class="pl-o">-</span><span class="pl-mi">1</span> <span class="pl-p">;</span> <span class="pl-n">i</span> <span class="pl-o">&gt;=</span> <span class="pl-mi">0</span> <span class="pl-p">;</span> <span class="pl-n">i</span> <span class="pl-o">--</span><span class="pl-p">)</span>
+    <span class="pl-p">{</span>
+        <span class="pl-k">for</span> <span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">j</span> <span class="pl-o">=</span> <span class="pl-mi">1</span> <span class="pl-p">;</span> <span class="pl-n">j</span> <span class="pl-o">&lt;=</span> <span class="pl-n">n</span> <span class="pl-p">;</span> <span class="pl-n">j</span> <span class="pl-o">++</span><span class="pl-p">)</span>
+        <span class="pl-p">{</span>
+            <span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-o">|</span><span class="pl-n">eve</span><span class="pl-p">[</span><span class="pl-n">j</span><span class="pl-p">]]</span> <span class="pl-o">=</span> <span class="pl-n">max</span><span class="pl-p">(</span><span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-o">|</span><span class="pl-n">eve</span><span class="pl-p">[</span><span class="pl-n">j</span><span class="pl-p">]],</span> <span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]</span> <span class="pl-o">+</span> <span class="pl-mi">1</span><span class="pl-p">);</span>
+        <span class="pl-p">}</span>
+    <span class="pl-p">}</span>
+    <span class="pl-k">for</span> <span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span> <span class="pl-o">=</span> <span class="pl-mi">0</span> <span class="pl-p">;</span> <span class="pl-n">i</span> <span class="pl-o">&lt;=</span> <span class="pl-p">(</span><span class="pl-mi">1</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">m</span><span class="pl-p">)</span><span class="pl-o">-</span><span class="pl-mi">1</span> <span class="pl-p">;</span> <span class="pl-n">i</span> <span class="pl-o">++</span><span class="pl-p">)</span>
+    <span class="pl-p">{</span>
+        <span class="pl-n">bitset</span> <span class="pl-o">&lt;</span><span class="pl-mi">16</span><span class="pl-o">&gt;</span> <span class="pl-n">bit</span> <span class="pl-o">=</span> <span class="pl-n">i</span><span class="pl-p">;</span>
+        <span class="pl-k">if</span> <span class="pl-p">(</span><span class="pl-n">bit</span><span class="pl-p">.</span><span class="pl-n">count</span><span class="pl-p">()</span> <span class="pl-o">&gt;</span> <span class="pl-n">k</span><span class="pl-p">)</span> <span class="pl-k">continue</span><span class="pl-p">;</span> 
+        <span class="pl-n">ans</span> <span class="pl-o">=</span> <span class="pl-n">max</span><span class="pl-p">(</span><span class="pl-n">ans</span><span class="pl-p">,</span> <span class="pl-n">f</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]);</span>
+    <span class="pl-p">}</span>
+    <span class="pl-n">cout</span> <span class="pl-o">&lt;&lt;</span> <span class="pl-n">ans</span> <span class="pl-o">&lt;&lt;</span> <span class="pl-n">endl</span><span class="pl-p">;</span>
+    <span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

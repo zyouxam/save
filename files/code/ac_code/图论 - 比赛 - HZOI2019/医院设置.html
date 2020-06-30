@@ -1,0 +1,65 @@
+<title>医院设置</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;stdio.h&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;iostream&gt;</span><span class="pl-cp"></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-kt">int</span> <span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-mi">105</span><span class="pl-p">][</span><span class="pl-mi">4</span><span class="pl-p">];</span>
+<span class="pl-kt">int</span> <span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-mi">105</span><span class="pl-p">][</span><span class="pl-mi">105</span><span class="pl-p">];</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+	<span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">;</span>
+	<span class="pl-n">cin</span><span class="pl-o">&gt;&gt;</span><span class="pl-n">n</span><span class="pl-p">;</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+		<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">j</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">++</span><span class="pl-p">){</span>
+			<span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">j</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-mi">10000000</span><span class="pl-p">;</span> 
+		<span class="pl-p">}</span>
+	<span class="pl-p">}</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+		<span class="pl-c1">//    人数      左节点  右节点   父节点 </span>
+		<span class="pl-n">cin</span><span class="pl-o">&gt;&gt;</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">0</span><span class="pl-p">]</span><span class="pl-o">&gt;&gt;</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">1</span><span class="pl-p">]</span><span class="pl-o">&gt;&gt;</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">2</span><span class="pl-p">];</span>  
+		<span class="pl-c1">//当前节点到左右节点的距离为1</span>
+		<span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">1</span><span class="pl-p">]]</span><span class="pl-o">=</span><span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">2</span><span class="pl-p">]]</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+		<span class="pl-c1">//左节点的父节点为当前节点 </span>
+		<span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">1</span><span class="pl-p">]][</span><span class="pl-mi">3</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+		<span class="pl-c1">//右节点的父节点为当前节点 </span>
+		<span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">2</span><span class="pl-p">]][</span><span class="pl-mi">3</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+		<span class="pl-c1">//当前节点 到 当前节点的父节点 距离为 1</span>
+		<span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">3</span><span class="pl-p">]]</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+	<span class="pl-p">}</span>
+	<span class="pl-cm">/*</span>
+<span class="pl-cm">	for(int i=1;i&lt;=n;i++){</span>
+<span class="pl-cm">		for(int j=1;j&lt;=n;j++){</span>
+<span class="pl-cm">			cout&lt;&lt;d[i][j]&lt;&lt;&quot; &quot;;</span>
+<span class="pl-cm">		}</span>
+<span class="pl-cm">		cout&lt;&lt;endl;</span>
+<span class="pl-cm">	}*/</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">k</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">k</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">k</span><span class="pl-o">++</span><span class="pl-p">){</span>
+		<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+			<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">j</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">++</span><span class="pl-p">){</span>
+				<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">i</span><span class="pl-o">==</span><span class="pl-n">j</span><span class="pl-p">)</span><span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">j</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span>
+				<span class="pl-c1">//if(a[i][3]&amp;&amp;a[j][3]&amp;&amp;a[k][3])</span>
+				<span class="pl-k">else</span> <span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">j</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">min</span><span class="pl-p">(</span><span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">j</span><span class="pl-p">],</span><span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">k</span><span class="pl-p">]</span><span class="pl-o">+</span><span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">k</span><span class="pl-p">][</span><span class="pl-n">j</span><span class="pl-p">]);</span>
+			<span class="pl-p">}</span>
+		<span class="pl-p">}</span>
+	<span class="pl-p">}</span>
+	<span class="pl-cm">/* </span>
+<span class="pl-cm">	for(int i=1;i&lt;=n;i++){</span>
+<span class="pl-cm">		for(int j=1;j&lt;=n;j++){</span>
+<span class="pl-cm">			cout&lt;&lt;d[i][j]&lt;&lt;&quot; &quot;;</span>
+<span class="pl-cm">		}</span>
+<span class="pl-cm">		cout&lt;&lt;endl;</span>
+<span class="pl-cm">	}</span>
+<span class="pl-cm">	*/</span> 
+	<span class="pl-kt">int</span> <span class="pl-n">min</span><span class="pl-o">=</span><span class="pl-mi">2000000000</span><span class="pl-p">;</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+		<span class="pl-kt">int</span> <span class="pl-n">s</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span>
+		<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-mi">0</span><span class="pl-p">])</span>
+		<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">j</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">++</span><span class="pl-p">){</span>
+			<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">j</span><span class="pl-p">][</span><span class="pl-mi">0</span><span class="pl-p">]){</span>
+				<span class="pl-c1">//cout&lt;&lt;d[i][j]*a[i][0]&lt;&lt;endl;</span>
+				<span class="pl-n">s</span><span class="pl-o">+=</span><span class="pl-n">d</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">j</span><span class="pl-p">]</span><span class="pl-o">*</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">j</span><span class="pl-p">][</span><span class="pl-mi">0</span><span class="pl-p">];</span>
+			<span class="pl-p">}</span>
+		<span class="pl-p">}</span>
+		<span class="pl-c1">//cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;endl;</span>
+		<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">s</span><span class="pl-o">&lt;</span><span class="pl-n">min</span><span class="pl-p">)</span><span class="pl-n">min</span><span class="pl-o">=</span><span class="pl-n">s</span><span class="pl-p">;</span>
+	<span class="pl-p">}</span>
+	<span class="pl-n">cout</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">min</span><span class="pl-p">;</span>
+<span class="pl-p">}</span> 
+</cpde></pre></div>

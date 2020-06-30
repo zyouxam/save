@@ -1,0 +1,49 @@
+<title>后缀表达式</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cm">/*</span>
+<span class="pl-cm">a+b</span>
+<span class="pl-cm">*/</span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;stack&gt;</span><span class="pl-cp"></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-kt">int</span> <span class="pl-nf">judge</span><span class="pl-p">(</span><span class="pl-kt">char</span> <span class="pl-n">a</span><span class="pl-p">,</span><span class="pl-kt">int</span> <span class="pl-n">ifInStack</span><span class="pl-p">){</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">==</span><span class="pl-sc">&#39;+&#39;</span> <span class="pl-o">||</span> <span class="pl-n">a</span><span class="pl-o">==</span><span class="pl-sc">&#39;-&#39;</span><span class="pl-p">)</span><span class="pl-k">return</span> <span class="pl-mi">1</span><span class="pl-p">;</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">==</span><span class="pl-sc">&#39;*&#39;</span> <span class="pl-o">||</span> <span class="pl-n">a</span><span class="pl-o">==</span><span class="pl-sc">&#39;/&#39;</span><span class="pl-p">)</span><span class="pl-k">return</span> <span class="pl-mi">2</span><span class="pl-p">;</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">==</span><span class="pl-sc">&#39;(&#39;</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-n">ifInStack</span><span class="pl-p">)</span><span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">==</span><span class="pl-sc">&#39;(&#39;</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-o">!</span><span class="pl-n">ifInStack</span><span class="pl-p">)</span><span class="pl-k">return</span> <span class="pl-mi">3</span><span class="pl-p">;</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">==</span><span class="pl-sc">&#39;)&#39;</span><span class="pl-p">)</span><span class="pl-k">return</span> <span class="pl-mi">4</span><span class="pl-p">;</span>  
+        <span class="pl-k">return</span> <span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;suffix.in&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;r&quot;</span><span class="pl-p">,</span><span class="pl-n">stdin</span><span class="pl-p">);</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;suffix.out&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;w&quot;</span><span class="pl-p">,</span><span class="pl-n">stdout</span><span class="pl-p">);</span>
+	<span class="pl-kt">char</span> <span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-mi">260</span><span class="pl-p">];</span>
+	<span class="pl-n">stack</span><span class="pl-o">&lt;</span><span class="pl-kt">char</span><span class="pl-o">&gt;</span> <span class="pl-n">stk</span><span class="pl-p">;</span>
+	<span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%s&quot;</span><span class="pl-p">,</span><span class="pl-n">s</span><span class="pl-p">);</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;</span><span class="pl-mi">260</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+	        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">])</span><span class="pl-k">break</span><span class="pl-p">;</span>
+	        <span class="pl-kt">int</span> <span class="pl-n">pro</span><span class="pl-o">=</span><span class="pl-n">judge</span><span class="pl-p">(</span><span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">],</span><span class="pl-mi">0</span><span class="pl-p">);</span>
+	        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">pro</span><span class="pl-o">&lt;</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+	                <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%c&quot;</span><span class="pl-p">,</span><span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]);</span>
+	                <span class="pl-k">continue</span><span class="pl-p">;</span>
+	        <span class="pl-p">}</span>
+	        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]</span><span class="pl-o">==</span><span class="pl-sc">&#39;)&#39;</span><span class="pl-p">){</span>
+	                <span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">empty</span><span class="pl-p">()</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">top</span><span class="pl-p">()</span><span class="pl-o">!=</span><span class="pl-sc">&#39;(&#39;</span><span class="pl-p">){</span>
+	                        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%c&quot;</span><span class="pl-p">,</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">top</span><span class="pl-p">());</span>
+	                        <span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">pop</span><span class="pl-p">();</span>
+	                <span class="pl-p">}</span>
+	                <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">empty</span><span class="pl-p">())</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">pop</span><span class="pl-p">();</span>
+	        <span class="pl-p">}</span>     
+	        <span class="pl-k">else</span><span class="pl-p">{</span>
+	                <span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">empty</span><span class="pl-p">()</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-n">judge</span><span class="pl-p">(</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">top</span><span class="pl-p">(),</span><span class="pl-mi">1</span><span class="pl-p">)</span><span class="pl-o">&gt;=</span><span class="pl-n">pro</span><span class="pl-p">){</span>
+	                        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%c&quot;</span><span class="pl-p">,</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">top</span><span class="pl-p">());</span>
+	                        <span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">pop</span><span class="pl-p">();</span>
+	                <span class="pl-p">}</span>
+	                <span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">push</span><span class="pl-p">(</span><span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]);</span>
+	        <span class="pl-p">}</span>  
+	<span class="pl-p">}</span>
+	<span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">empty</span><span class="pl-p">()){</span>
+                <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%c&quot;</span><span class="pl-p">,</span><span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">top</span><span class="pl-p">());</span>
+                <span class="pl-n">stk</span><span class="pl-p">.</span><span class="pl-n">pop</span><span class="pl-p">();</span>
+        <span class="pl-p">}</span>
+	<span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

@@ -1,0 +1,80 @@
+<title>「NOIP2015」神奇的幻方</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+        <span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">;</span>
+        <span class="pl-kt">int</span> <span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-mi">50</span><span class="pl-p">][</span><span class="pl-mi">50</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-p">{</span><span class="pl-mi">0</span><span class="pl-p">};</span>
+        <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">n</span><span class="pl-p">);</span>
+        <span class="pl-kt">int</span> <span class="pl-n">lx</span><span class="pl-p">,</span><span class="pl-n">ly</span><span class="pl-p">;</span>
+        <span class="pl-n">lx</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+        <span class="pl-n">ly</span><span class="pl-o">=</span><span class="pl-n">n</span><span class="pl-o">/</span><span class="pl-mi">2</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+        <span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-n">lx</span><span class="pl-p">][</span><span class="pl-n">ly</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+        <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">2</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-o">*</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+                <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">lx</span><span class="pl-o">==</span><span class="pl-mi">1</span><span class="pl-o">&amp;&amp;</span><span class="pl-n">ly</span><span class="pl-o">==</span><span class="pl-n">n</span><span class="pl-p">){</span>
+                        <span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-n">lx</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">][</span><span class="pl-n">ly</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+                        <span class="pl-n">lx</span><span class="pl-o">=</span><span class="pl-n">lx</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+                <span class="pl-p">}</span>
+                <span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">lx</span><span class="pl-o">==</span><span class="pl-mi">1</span><span class="pl-p">){</span>
+                        <span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-n">n</span><span class="pl-p">][</span><span class="pl-n">ly</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+                        <span class="pl-n">lx</span><span class="pl-o">=</span><span class="pl-n">n</span><span class="pl-p">;</span>
+                        <span class="pl-n">ly</span><span class="pl-o">=</span><span class="pl-n">ly</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+                <span class="pl-p">}</span>
+                <span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">ly</span><span class="pl-o">==</span><span class="pl-n">n</span><span class="pl-p">){</span>
+                        <span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-n">lx</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">][</span><span class="pl-mi">1</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+                        <span class="pl-n">lx</span><span class="pl-o">=</span><span class="pl-n">lx</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+                        <span class="pl-n">ly</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+                <span class="pl-p">}</span>
+                <span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-n">lx</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">][</span><span class="pl-n">ly</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">]){</span>
+                        <span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-n">lx</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">][</span><span class="pl-n">ly</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+                        <span class="pl-n">lx</span><span class="pl-o">=</span><span class="pl-n">lx</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+                        <span class="pl-n">ly</span><span class="pl-o">=</span><span class="pl-n">ly</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+                <span class="pl-p">}</span>
+                <span class="pl-k">else</span><span class="pl-p">{</span>
+                        <span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-n">lx</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">][</span><span class="pl-n">ly</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+                        <span class="pl-n">lx</span><span class="pl-o">=</span><span class="pl-n">lx</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+                <span class="pl-p">}</span>
+        <span class="pl-p">}</span>
+        <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+                <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">j</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">++</span><span class="pl-p">){</span>
+                        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d &quot;</span><span class="pl-p">,</span><span class="pl-n">map</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">j</span><span class="pl-p">]);</span>
+                        
+                        
+                <span class="pl-p">}</span>
+                <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;</span><span class="pl-se">\n</span><span class="pl-s">&quot;</span><span class="pl-p">);</span>
+        <span class="pl-p">}</span>
+        
+        <span class="pl-cm">/*</span>
+<span class="pl-cm">        int ls=0,cs=0,ds1=0,ds2=0;</span>
+<span class="pl-cm">        for(int i=1;i&lt;=n;i++){</span>
+<span class="pl-cm">                int cls=0;</span>
+<span class="pl-cm">                for(int j=1;j&lt;=n;j++){</span>
+<span class="pl-cm">                        cls+=map[i][j];</span>
+<span class="pl-cm">                }</span>
+<span class="pl-cm">                if(!ls)ls=cls;</span>
+<span class="pl-cm">                else if(ls!=cls){</span>
+<span class="pl-cm">                        printf(&quot;[!]行:%d ls:%d cls:%d\n&quot;,i,ls,cls);</span>
+<span class="pl-cm">                        //return 0;</span>
+<span class="pl-cm">                }</span>
+<span class="pl-cm">        }</span>
+<span class="pl-cm">        </span>
+<span class="pl-cm">        for(int i=1;i&lt;=n;i++){</span>
+<span class="pl-cm">                int ccs=0;</span>
+<span class="pl-cm">                for(int j=1;j&lt;=n;j++){</span>
+<span class="pl-cm">                        ccs+=map[j][i];</span>
+<span class="pl-cm">                }</span>
+<span class="pl-cm">                if(!cs)cs=ccs;</span>
+<span class="pl-cm">                else if(cs!=ccs){</span>
+<span class="pl-cm">                        printf(&quot;[!]列:%d cs:%d ccs:%d\n&quot;,i,cs,ccs);</span>
+<span class="pl-cm">                        //return 0;</span>
+<span class="pl-cm">                }</span>
+<span class="pl-cm">        }</span>
+<span class="pl-cm">        for(int i=1;i&lt;=n;i++){</span>
+<span class="pl-cm">                for(int j=1;j&lt;=n;j++){</span>
+<span class="pl-cm">                        if(i==j)ds1+=map[i][j];</span>
+<span class="pl-cm">                        if(i+j==n+1)ds2+=map[i][j];</span>
+<span class="pl-cm">                }</span>
+<span class="pl-cm">        }</span>
+<span class="pl-cm">        if(ds1!=ds2){</span>
+<span class="pl-cm">                printf(&quot;[!]对角线:ds1:%d ds2:%d\n&quot;,ds1,ds2);</span>
+<span class="pl-cm">        }*/</span>
+        <span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

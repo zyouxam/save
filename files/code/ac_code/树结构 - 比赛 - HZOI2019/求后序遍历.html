@@ -1,0 +1,26 @@
+<title>求后序遍历</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;string&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;iostream&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#define slice(x,a,b) (x.substr(a,b-a+1))</span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-kt">void</span> <span class="pl-nf">f</span><span class="pl-p">(</span><span class="pl-n">string</span> <span class="pl-n">fs</span><span class="pl-p">,</span><span class="pl-n">string</span> <span class="pl-n">ms</span><span class="pl-p">){</span>
+	<span class="pl-n">string</span> <span class="pl-n">root</span><span class="pl-o">=</span><span class="pl-n">slice</span><span class="pl-p">(</span><span class="pl-n">fs</span><span class="pl-p">,</span><span class="pl-mi">0</span><span class="pl-p">,</span><span class="pl-mi">0</span><span class="pl-p">);</span>
+	<span class="pl-kt">int</span> <span class="pl-n">ri</span><span class="pl-o">=</span><span class="pl-n">ms</span><span class="pl-p">.</span><span class="pl-n">find</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-p">,</span><span class="pl-mi">0</span><span class="pl-p">);</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">fs</span><span class="pl-o">==</span><span class="pl-s">&quot;&quot;</span><span class="pl-p">)</span><span class="pl-k">return</span><span class="pl-p">;</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">fs</span><span class="pl-p">.</span><span class="pl-n">size</span><span class="pl-p">()</span><span class="pl-o">==</span><span class="pl-mi">1</span><span class="pl-p">){</span>
+		<span class="pl-n">cout</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">fs</span><span class="pl-p">;</span>
+	<span class="pl-p">}</span><span class="pl-k">else</span><span class="pl-p">{</span>
+		<span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-n">slice</span><span class="pl-p">(</span><span class="pl-n">fs</span><span class="pl-p">,</span><span class="pl-mi">1</span><span class="pl-p">,</span><span class="pl-n">ri</span><span class="pl-p">),</span><span class="pl-n">slice</span><span class="pl-p">(</span><span class="pl-n">ms</span><span class="pl-p">,</span><span class="pl-mi">0</span><span class="pl-p">,</span><span class="pl-n">ri</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">));</span>
+		<span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-n">slice</span><span class="pl-p">(</span><span class="pl-n">fs</span><span class="pl-p">,</span><span class="pl-n">ri</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">,</span><span class="pl-n">fs</span><span class="pl-p">.</span><span class="pl-n">size</span><span class="pl-p">()</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">),</span><span class="pl-n">slice</span><span class="pl-p">(</span><span class="pl-n">ms</span><span class="pl-p">,</span><span class="pl-n">ri</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">,</span><span class="pl-n">ms</span><span class="pl-p">.</span><span class="pl-n">size</span><span class="pl-p">()</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">));</span>
+		<span class="pl-n">cout</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">root</span><span class="pl-p">;</span>
+	<span class="pl-p">}</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;post.in&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;r&quot;</span><span class="pl-p">,</span><span class="pl-n">stdin</span><span class="pl-p">);</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;post.out&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;w&quot;</span><span class="pl-p">,</span><span class="pl-n">stdout</span><span class="pl-p">);</span>
+	<span class="pl-n">string</span> <span class="pl-n">fs</span><span class="pl-p">,</span><span class="pl-n">ms</span><span class="pl-p">;</span>
+	<span class="pl-n">cin</span><span class="pl-o">&gt;&gt;</span><span class="pl-n">fs</span><span class="pl-o">&gt;&gt;</span><span class="pl-n">ms</span><span class="pl-p">;</span>
+	<span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-n">fs</span><span class="pl-p">,</span><span class="pl-n">ms</span><span class="pl-p">);</span>
+	<span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

@@ -1,0 +1,94 @@
+<title>受欢迎的牛</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;algorithm&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#define MAXM 50005</span>
+<span class="pl-cp">#define MAXN 10005</span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-k">struct</span> <span class="pl-n">edge</span><span class="pl-p">{</span>
+    <span class="pl-kt">int</span> <span class="pl-n">f</span><span class="pl-p">,</span><span class="pl-n">to</span><span class="pl-p">,</span><span class="pl-n">next</span><span class="pl-p">;</span>
+    <span class="pl-n">edge</span><span class="pl-p">(){</span><span class="pl-n">to</span><span class="pl-o">=</span><span class="pl-n">next</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;}</span>
+<span class="pl-p">}</span> <span class="pl-n">edges</span><span class="pl-p">[</span><span class="pl-n">MAXM</span><span class="pl-p">];</span>
+<span class="pl-kt">int</span> <span class="pl-n">head</span><span class="pl-p">[</span><span class="pl-n">MAXM</span><span class="pl-p">],</span><span class="pl-n">tot</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+<span class="pl-kt">void</span> <span class="pl-nf">add</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">x</span><span class="pl-p">,</span><span class="pl-kt">int</span> <span class="pl-n">y</span><span class="pl-p">){</span>
+    <span class="pl-n">edges</span><span class="pl-p">[</span><span class="pl-o">++</span><span class="pl-n">tot</span><span class="pl-p">].</span><span class="pl-n">to</span><span class="pl-o">=</span><span class="pl-n">y</span><span class="pl-p">;</span>
+    <span class="pl-n">edges</span><span class="pl-p">[</span><span class="pl-n">tot</span><span class="pl-p">].</span><span class="pl-n">f</span><span class="pl-o">=</span><span class="pl-n">x</span><span class="pl-p">;</span>
+    <span class="pl-n">edges</span><span class="pl-p">[</span><span class="pl-n">tot</span><span class="pl-p">].</span><span class="pl-n">next</span><span class="pl-o">=</span><span class="pl-n">head</span><span class="pl-p">[</span><span class="pl-n">x</span><span class="pl-p">];</span>
+    <span class="pl-n">head</span><span class="pl-p">[</span><span class="pl-n">x</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">tot</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-n">m</span><span class="pl-p">,</span><span class="pl-n">x</span><span class="pl-p">,</span><span class="pl-n">y</span><span class="pl-p">;</span>
+<span class="pl-cm">/*</span>
+<span class="pl-cm">bool vis[MAXN];</span>
+<span class="pl-cm">int dfn[MAXN],low[MAXN],cnt;</span>
+<span class="pl-cm">void tarjan(int u){</span>
+<span class="pl-cm">    vis[u]=true;</span>
+<span class="pl-cm">    low[u]=dfn[u]=++cnt;</span>
+<span class="pl-cm">    for(int x=head[x];x;x=edges[x].next){</span>
+<span class="pl-cm">        int v=edges[x].to;</span>
+<span class="pl-cm">        if(vis[u]){</span>
+<span class="pl-cm">            low[u]=min(low[u],dfn[v]);</span>
+<span class="pl-cm">        }else{</span>
+<span class="pl-cm">            tarjan(v);</span>
+<span class="pl-cm">            low[u]=min(low[u],low[v]);</span>
+<span class="pl-cm">        }</span>
+<span class="pl-cm">    }</span>
+
+<span class="pl-cm">}</span>
+<span class="pl-cm">*/</span>
+<span class="pl-kt">int</span> <span class="pl-n">dfn</span><span class="pl-p">[</span><span class="pl-n">MAXN</span><span class="pl-p">],</span><span class="pl-n">low</span><span class="pl-p">[</span><span class="pl-n">MAXN</span><span class="pl-p">],</span><span class="pl-n">cnt</span><span class="pl-p">,</span><span class="pl-n">dfs_clock</span><span class="pl-p">,</span><span class="pl-n">sta</span><span class="pl-p">[</span><span class="pl-n">MAXN</span><span class="pl-p">],</span><span class="pl-n">top</span><span class="pl-p">,</span><span class="pl-n">belong</span><span class="pl-p">[</span><span class="pl-n">MAXN</span><span class="pl-p">],</span><span class="pl-n">scc_cnt</span><span class="pl-p">,</span><span class="pl-n">siz</span><span class="pl-p">[</span><span class="pl-n">MAXN</span><span class="pl-p">];</span>
+<span class="pl-kt">void</span> <span class="pl-nf">tarjan</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">u</span><span class="pl-p">){</span>
+    <span class="pl-c1">//printf(&quot;[%d]&quot;,u);</span>
+    <span class="pl-n">dfn</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">]</span> <span class="pl-o">=</span> <span class="pl-n">low</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">]</span> <span class="pl-o">=</span> <span class="pl-o">++</span> <span class="pl-n">dfs_clock</span><span class="pl-p">;</span>
+    <span class="pl-n">sta</span><span class="pl-p">[</span><span class="pl-o">++</span><span class="pl-n">top</span><span class="pl-p">]</span> <span class="pl-o">=</span> <span class="pl-n">u</span><span class="pl-p">;</span> 
+    <span class="pl-c1">//printf(&quot;[&quot;);for(int i=1;i&lt;top;i++)printf(&quot;%d &quot;,sta[i]);printf(&quot;\n&quot;);</span>
+    <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">x</span> <span class="pl-o">=</span> <span class="pl-n">head</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">];</span><span class="pl-n">x</span><span class="pl-p">;</span><span class="pl-n">x</span><span class="pl-o">=</span><span class="pl-n">edges</span><span class="pl-p">[</span><span class="pl-n">x</span><span class="pl-p">].</span><span class="pl-n">next</span><span class="pl-p">){</span>
+        <span class="pl-kt">int</span> <span class="pl-n">v</span><span class="pl-o">=</span><span class="pl-n">edges</span><span class="pl-p">[</span><span class="pl-n">x</span><span class="pl-p">].</span><span class="pl-n">to</span><span class="pl-p">;</span>
+        <span class="pl-c1">//printf(&quot;%d-&gt;%d\n&quot;,u,v);</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">dfn</span><span class="pl-p">[</span><span class="pl-n">v</span><span class="pl-p">]){</span>
+            <span class="pl-n">tarjan</span><span class="pl-p">(</span><span class="pl-n">v</span><span class="pl-p">);</span>
+            <span class="pl-n">low</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">]</span> <span class="pl-o">=</span> <span class="pl-n">min</span><span class="pl-p">(</span><span class="pl-n">low</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">],</span> <span class="pl-n">low</span><span class="pl-p">[</span><span class="pl-n">v</span><span class="pl-p">]);</span>
+        <span class="pl-p">}</span><span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">belong</span><span class="pl-p">[</span><span class="pl-n">v</span><span class="pl-p">])</span> <span class="pl-n">low</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">]</span> <span class="pl-o">=</span> <span class="pl-n">min</span><span class="pl-p">(</span><span class="pl-n">low</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">],</span><span class="pl-n">dfn</span><span class="pl-p">[</span><span class="pl-n">v</span><span class="pl-p">]);</span>
+    <span class="pl-p">}</span>
+    <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">dfn</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">]</span> <span class="pl-o">==</span> <span class="pl-n">low</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">]){</span>
+        <span class="pl-n">scc_cnt</span><span class="pl-o">++</span><span class="pl-p">;</span>
+        <span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-mi">1</span><span class="pl-p">){</span>
+            <span class="pl-kt">int</span> <span class="pl-n">x</span> <span class="pl-o">=</span> <span class="pl-n">sta</span><span class="pl-p">[</span><span class="pl-n">top</span><span class="pl-o">--</span><span class="pl-p">];</span> 
+            <span class="pl-n">belong</span><span class="pl-p">[</span><span class="pl-n">x</span><span class="pl-p">]</span> <span class="pl-o">=</span> <span class="pl-n">scc_cnt</span><span class="pl-p">;</span> 
+            <span class="pl-n">siz</span><span class="pl-p">[</span><span class="pl-n">scc_cnt</span><span class="pl-p">]</span> <span class="pl-o">++</span> <span class="pl-p">;</span> 
+            <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">x</span> <span class="pl-o">==</span> <span class="pl-n">u</span><span class="pl-p">)</span> <span class="pl-k">break</span><span class="pl-p">;</span> 
+        <span class="pl-p">}</span>
+    <span class="pl-p">}</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-n">out</span><span class="pl-p">[</span><span class="pl-n">MAXN</span><span class="pl-p">];</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+    <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">m</span><span class="pl-p">);</span>
+    <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">m</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+        <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">x</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">y</span><span class="pl-p">);</span>
+        <span class="pl-n">add</span><span class="pl-p">(</span><span class="pl-n">x</span><span class="pl-p">,</span><span class="pl-n">y</span><span class="pl-p">);</span>
+    <span class="pl-p">}</span>
+    <span class="pl-n">tarjan</span><span class="pl-p">(</span><span class="pl-mi">1</span><span class="pl-p">);</span>
+    <span class="pl-c1">//for(int i=1;i&lt;=n;i++)printf(&quot;%d &quot;,belong[i]);printf(&quot;\n&quot;);</span>
+    <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">2</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">tot</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+        <span class="pl-kt">int</span> <span class="pl-n">u</span><span class="pl-o">=</span><span class="pl-n">edges</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">].</span><span class="pl-n">f</span><span class="pl-p">,</span><span class="pl-n">v</span><span class="pl-o">=</span><span class="pl-n">edges</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">].</span><span class="pl-n">to</span><span class="pl-p">;</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">belong</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">]</span><span class="pl-o">==</span><span class="pl-n">belong</span><span class="pl-p">[</span><span class="pl-n">v</span><span class="pl-p">])</span><span class="pl-k">continue</span><span class="pl-p">;</span>
+        <span class="pl-c1">//printf(&quot;%d(%d) %d(%d)\n&quot;,u,belong[u],v,belong[v]);</span>
+        <span class="pl-n">out</span><span class="pl-p">[</span><span class="pl-n">belong</span><span class="pl-p">[</span><span class="pl-n">u</span><span class="pl-p">]]</span><span class="pl-o">++</span><span class="pl-p">;</span>
+    <span class="pl-p">}</span>
+    <span class="pl-c1">//for(int i=1;i&lt;=scc_cnt;i++)printf(&quot;%d &quot;,out[i]);printf(&quot;\n&quot;);</span>
+    <span class="pl-kt">int</span> <span class="pl-n">zi</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">,</span><span class="pl-n">outi</span><span class="pl-p">;</span>
+    <span class="pl-c1">//printf(&quot;scc_cnt:%d\n&quot;,scc_cnt);</span>
+    <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">scc_cnt</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">out</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]){</span>
+            <span class="pl-c1">//printf(&quot;zero:%d\n&quot;,i);</span>
+            <span class="pl-n">zi</span><span class="pl-o">++</span><span class="pl-p">;</span>
+            <span class="pl-n">outi</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+        <span class="pl-p">}</span>
+    <span class="pl-p">}</span>
+    <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">zi</span><span class="pl-o">&gt;=</span><span class="pl-mi">2</span><span class="pl-p">){</span>
+        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;0</span><span class="pl-se">\n</span><span class="pl-s">&quot;</span><span class="pl-p">);</span>
+    <span class="pl-p">}</span><span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">zi</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-n">n</span><span class="pl-p">);</span>
+    <span class="pl-p">}</span><span class="pl-k">else</span><span class="pl-p">{</span>
+        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-n">siz</span><span class="pl-p">[</span><span class="pl-n">outi</span><span class="pl-p">]);</span>
+    <span class="pl-p">}</span>
+    <span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

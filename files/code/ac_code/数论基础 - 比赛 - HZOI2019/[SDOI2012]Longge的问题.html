@@ -1,0 +1,25 @@
+<title>[SDOI2012]Longge的问题</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;bits/stdc++.h&gt;</span><span class="pl-cp"></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-cp">#define int long long</span>
+<span class="pl-kt">int</span> <span class="pl-nf">euler</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">a</span><span class="pl-p">){</span>
+	<span class="pl-kt">int</span> <span class="pl-n">ans</span><span class="pl-o">=</span><span class="pl-n">a</span><span class="pl-p">;</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">2</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">*</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">a</span><span class="pl-p">;</span><span class="pl-o">++</span><span class="pl-n">i</span><span class="pl-p">)</span>
+		<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">%</span><span class="pl-n">i</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+			<span class="pl-n">ans</span><span class="pl-o">=</span><span class="pl-n">ans</span><span class="pl-o">/</span><span class="pl-n">i</span><span class="pl-o">*</span><span class="pl-p">(</span><span class="pl-n">i</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">);</span>
+			<span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">%</span><span class="pl-n">i</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">)</span><span class="pl-n">a</span><span class="pl-o">/=</span><span class="pl-n">i</span><span class="pl-p">;</span>
+		<span class="pl-p">}</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">!=</span><span class="pl-mi">1</span><span class="pl-p">)</span><span class="pl-n">ans</span><span class="pl-o">=</span><span class="pl-n">ans</span><span class="pl-o">/</span><span class="pl-n">a</span><span class="pl-o">*</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">);</span>
+	<span class="pl-k">return</span> <span class="pl-n">ans</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-n">ans</span><span class="pl-p">;</span>
+<span class="pl-kt">signed</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+	<span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%lld&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">n</span><span class="pl-p">);</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">*</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-o">++</span><span class="pl-n">i</span><span class="pl-p">)</span>
+		<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">%</span><span class="pl-n">i</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+			<span class="pl-n">ans</span><span class="pl-o">+=</span><span class="pl-n">i</span><span class="pl-o">*</span><span class="pl-n">euler</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">/</span><span class="pl-n">i</span><span class="pl-p">);</span>
+			<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">i</span><span class="pl-o">!=</span><span class="pl-n">n</span><span class="pl-o">/</span><span class="pl-n">i</span><span class="pl-p">)</span> <span class="pl-n">ans</span><span class="pl-o">+=</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">/</span><span class="pl-n">i</span><span class="pl-p">)</span><span class="pl-o">*</span><span class="pl-n">euler</span><span class="pl-p">(</span><span class="pl-n">i</span><span class="pl-p">);</span>
+		<span class="pl-p">}</span>
+	<span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%lld&quot;</span><span class="pl-p">,</span><span class="pl-n">ans</span><span class="pl-p">);</span>
+	<span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

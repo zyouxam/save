@@ -1,0 +1,50 @@
+<title>二叉排序树</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cm">/*</span>
+<span class="pl-cm">3</span>
+<span class="pl-cm">3 1 2</span>
+<span class="pl-cm">*/</span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-n">c</span><span class="pl-p">;</span>
+<span class="pl-k">struct</span> <span class="pl-n">node</span><span class="pl-p">{</span><span class="pl-kt">int</span> <span class="pl-n">data</span><span class="pl-p">;</span><span class="pl-kt">bool</span> <span class="pl-n">have_data</span><span class="pl-p">;</span><span class="pl-n">node</span><span class="pl-o">*</span> <span class="pl-n">l</span><span class="pl-p">;</span><span class="pl-n">node</span><span class="pl-o">*</span> <span class="pl-n">r</span><span class="pl-p">;};</span>
+<span class="pl-kt">void</span> <span class="pl-nf">insert</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-n">node</span><span class="pl-o">*</span> <span class="pl-n">now</span><span class="pl-p">){</span>
+	<span class="pl-cm">/*if(now-&gt;data==n){</span>
+<span class="pl-cm">		insert(n,now-&gt;)</span>
+<span class="pl-cm">	};</span>
+<span class="pl-cm">	else */</span><span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-o">!</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">have_data</span><span class="pl-p">){</span>
+		<span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">data</span><span class="pl-o">=</span><span class="pl-n">n</span><span class="pl-p">;</span>
+		<span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">have_data</span><span class="pl-o">=</span><span class="pl-nb">true</span><span class="pl-p">;</span>
+	<span class="pl-p">}</span>
+	<span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">&lt;</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">data</span><span class="pl-p">){</span>
+		<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span><span class="pl-o">==</span><span class="pl-nb">NULL</span><span class="pl-p">)</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span><span class="pl-o">=</span><span class="pl-k">new</span> <span class="pl-n">node</span><span class="pl-p">;</span>
+		<span class="pl-n">insert</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span><span class="pl-p">);</span>
+	<span class="pl-p">}</span><span class="pl-k">else</span><span class="pl-p">{</span>
+		<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span><span class="pl-o">==</span><span class="pl-nb">NULL</span><span class="pl-p">)</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span><span class="pl-o">=</span><span class="pl-k">new</span> <span class="pl-n">node</span><span class="pl-p">;</span>
+		<span class="pl-n">insert</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span><span class="pl-p">);</span>
+	<span class="pl-p">}</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">void</span> <span class="pl-nf">m</span><span class="pl-p">(</span><span class="pl-n">node</span><span class="pl-o">*</span> <span class="pl-n">root</span><span class="pl-p">){</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span><span class="pl-o">-&gt;</span><span class="pl-n">have_data</span><span class="pl-p">)</span><span class="pl-n">m</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span><span class="pl-p">);</span>
+	<span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d &quot;</span><span class="pl-p">,</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">data</span><span class="pl-p">);</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span><span class="pl-o">-&gt;</span><span class="pl-n">have_data</span><span class="pl-p">)</span><span class="pl-n">m</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span><span class="pl-p">);</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">void</span> <span class="pl-nf">b</span><span class="pl-p">(</span><span class="pl-n">node</span><span class="pl-o">*</span> <span class="pl-n">root</span><span class="pl-p">){</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span><span class="pl-o">-&gt;</span><span class="pl-n">have_data</span><span class="pl-p">)</span><span class="pl-n">b</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">l</span><span class="pl-p">);</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span><span class="pl-o">-&gt;</span><span class="pl-n">have_data</span><span class="pl-p">)</span><span class="pl-n">b</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">r</span><span class="pl-p">);</span>
+	<span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d &quot;</span><span class="pl-p">,</span><span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">data</span><span class="pl-p">);</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;sorttree.in&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;r&quot;</span><span class="pl-p">,</span><span class="pl-n">stdin</span><span class="pl-p">);</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;sorttree.out&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;w&quot;</span><span class="pl-p">,</span><span class="pl-n">stdout</span><span class="pl-p">);</span>
+	<span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">n</span><span class="pl-p">);</span>
+	<span class="pl-n">node</span> <span class="pl-o">*</span> <span class="pl-n">root</span><span class="pl-o">=</span><span class="pl-k">new</span> <span class="pl-n">node</span><span class="pl-p">;</span>
+	<span class="pl-n">root</span><span class="pl-o">-&gt;</span><span class="pl-n">have_data</span><span class="pl-o">=</span><span class="pl-nb">false</span><span class="pl-p">;</span>
+	<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+		<span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">c</span><span class="pl-p">);</span>
+		<span class="pl-n">insert</span><span class="pl-p">(</span><span class="pl-n">c</span><span class="pl-p">,</span><span class="pl-n">root</span><span class="pl-p">);</span>
+	<span class="pl-p">}</span>
+	<span class="pl-n">m</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-p">);</span>
+	<span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;</span><span class="pl-se">\n</span><span class="pl-s">&quot;</span><span class="pl-p">);</span>
+	<span class="pl-n">b</span><span class="pl-p">(</span><span class="pl-n">root</span><span class="pl-p">);</span>
+	<span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;</span><span class="pl-se">\n</span><span class="pl-s">&quot;</span><span class="pl-p">);</span>
+	<span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

@@ -1,0 +1,27 @@
+<title>整除</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+        <span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">;</span>
+        <span class="pl-kt">bool</span> <span class="pl-n">chu</span><span class="pl-o">=</span><span class="pl-nb">true</span><span class="pl-p">;</span>
+	<span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">n</span><span class="pl-p">);</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">%</span><span class="pl-mi">3</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+	        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;3 &quot;</span><span class="pl-p">);</span>
+	        <span class="pl-n">chu</span><span class="pl-o">=</span><span class="pl-nb">false</span><span class="pl-p">;</span>
+        <span class="pl-p">}</span>
+	<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">%</span><span class="pl-mi">5</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+	        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;5 &quot;</span><span class="pl-p">);</span>
+	        <span class="pl-n">chu</span><span class="pl-o">=</span><span class="pl-nb">false</span><span class="pl-p">;</span>
+        <span class="pl-p">}</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">%</span><span class="pl-mi">7</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+	        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;7 &quot;</span><span class="pl-p">);</span>
+	        <span class="pl-n">chu</span><span class="pl-o">=</span><span class="pl-nb">false</span><span class="pl-p">;</span>
+        <span class="pl-p">}</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">n</span><span class="pl-o">%</span><span class="pl-mi">11</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">){</span>
+	        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;11 &quot;</span><span class="pl-p">);</span>
+	        <span class="pl-n">chu</span><span class="pl-o">=</span><span class="pl-nb">false</span><span class="pl-p">;</span>
+        <span class="pl-p">}</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">chu</span><span class="pl-p">){</span>
+                <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;No&quot;</span><span class="pl-p">);</span>
+        <span class="pl-p">}</span>
+	<span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

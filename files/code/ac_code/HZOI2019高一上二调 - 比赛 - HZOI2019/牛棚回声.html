@@ -1,0 +1,29 @@
+<title>牛棚回声</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstring&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;iostream&gt;</span><span class="pl-cp"></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-kt">int</span> <span class="pl-nf">f</span><span class="pl-p">(</span><span class="pl-kt">char</span> <span class="pl-n">a</span><span class="pl-p">[],</span><span class="pl-kt">char</span> <span class="pl-n">b</span><span class="pl-p">[]){</span>
+        <span class="pl-kt">int</span> <span class="pl-n">alen</span><span class="pl-p">,</span><span class="pl-n">blen</span><span class="pl-p">;</span>
+        <span class="pl-n">alen</span><span class="pl-o">=</span><span class="pl-n">strlen</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-p">);</span>
+        <span class="pl-n">blen</span><span class="pl-o">=</span><span class="pl-n">strlen</span><span class="pl-p">(</span><span class="pl-n">b</span><span class="pl-p">);</span>
+        <span class="pl-kt">int</span> <span class="pl-n">m</span><span class="pl-o">=</span><span class="pl-n">min</span><span class="pl-p">(</span><span class="pl-n">alen</span><span class="pl-p">,</span><span class="pl-n">blen</span><span class="pl-p">);</span>
+        <span class="pl-kt">int</span> <span class="pl-n">m2</span><span class="pl-o">=-</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+        <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;</span><span class="pl-n">m</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+                <span class="pl-kt">int</span> <span class="pl-n">j</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span>
+                <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-n">j</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">&lt;=</span><span class="pl-n">i</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">++</span><span class="pl-p">){</span>
+                        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">b</span><span class="pl-p">[</span><span class="pl-n">j</span><span class="pl-p">]</span><span class="pl-o">!=</span><span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-n">alen</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-o">-</span><span class="pl-n">i</span><span class="pl-o">+</span><span class="pl-n">j</span><span class="pl-p">])</span><span class="pl-k">break</span><span class="pl-p">;</span>
+                        <span class="pl-c1">//printf(&quot;%d %d %c %c\n&quot;,i,j,b[j],a[alen-1-i+j]);</span>
+                <span class="pl-p">}</span>
+                <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">j</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-o">==</span><span class="pl-n">i</span><span class="pl-p">)</span><span class="pl-n">m2</span><span class="pl-o">=</span><span class="pl-n">i</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+        <span class="pl-p">}</span>
+        <span class="pl-k">return</span> <span class="pl-n">m2</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+        <span class="pl-kt">char</span> <span class="pl-n">a</span><span class="pl-p">[</span><span class="pl-mi">100</span><span class="pl-p">],</span><span class="pl-n">b</span><span class="pl-p">[</span><span class="pl-mi">100</span><span class="pl-p">];</span>
+        <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%s%s&quot;</span><span class="pl-p">,</span><span class="pl-n">a</span><span class="pl-p">,</span><span class="pl-n">b</span><span class="pl-p">);</span>
+        <span class="pl-kt">int</span> <span class="pl-n">ans</span><span class="pl-o">=</span><span class="pl-n">max</span><span class="pl-p">(</span><span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-n">a</span><span class="pl-p">,</span><span class="pl-n">b</span><span class="pl-p">),</span><span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-n">b</span><span class="pl-p">,</span><span class="pl-n">a</span><span class="pl-p">));</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">ans</span><span class="pl-o">==-</span><span class="pl-mi">1</span><span class="pl-p">)</span><span class="pl-n">ans</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span>
+        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d</span><span class="pl-se">\n</span><span class="pl-s">&quot;</span><span class="pl-p">,</span><span class="pl-n">ans</span><span class="pl-p">);</span>
+        <span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

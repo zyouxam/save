@@ -1,0 +1,32 @@
+<title>数列操作c</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#define MAXN 1000005</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+    <span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-n">m</span><span class="pl-p">;</span>
+    <span class="pl-kt">int</span> <span class="pl-n">a</span><span class="pl-p">,</span><span class="pl-n">b</span><span class="pl-p">;</span>
+    <span class="pl-kt">long</span> <span class="pl-kt">long</span> <span class="pl-n">c</span><span class="pl-p">;</span>
+    <span class="pl-kt">long</span> <span class="pl-kt">long</span> <span class="pl-n">data</span><span class="pl-p">[</span><span class="pl-n">MAXN</span><span class="pl-p">];</span>
+    <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">n</span><span class="pl-p">);</span>
+    <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">n</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+        <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%lld&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">data</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]);</span>
+    <span class="pl-p">}</span>
+    <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">m</span><span class="pl-p">);</span>
+    <span class="pl-kt">char</span> <span class="pl-n">o</span><span class="pl-p">[</span><span class="pl-mi">10</span><span class="pl-p">];</span>
+    <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;=</span><span class="pl-n">m</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+        <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%s&quot;</span><span class="pl-p">,</span><span class="pl-n">o</span><span class="pl-p">);</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">o</span><span class="pl-p">[</span><span class="pl-mi">0</span><span class="pl-p">]</span><span class="pl-o">==</span><span class="pl-sc">&#39;A&#39;</span><span class="pl-p">){</span>
+            <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d%d%lld&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">a</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">b</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">c</span><span class="pl-p">);</span>
+            <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">j</span><span class="pl-o">=</span><span class="pl-n">a</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">&lt;=</span><span class="pl-n">b</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">++</span><span class="pl-p">){</span>
+                <span class="pl-n">data</span><span class="pl-p">[</span><span class="pl-n">j</span><span class="pl-p">]</span><span class="pl-o">+=</span><span class="pl-n">c</span><span class="pl-p">;</span>
+            <span class="pl-p">}</span>
+        <span class="pl-p">}</span><span class="pl-k">else</span><span class="pl-p">{</span>
+            <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">a</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">b</span><span class="pl-p">);</span>
+            <span class="pl-kt">long</span> <span class="pl-kt">long</span> <span class="pl-n">sum</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span>
+            <span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">j</span><span class="pl-o">=</span><span class="pl-n">a</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">&lt;=</span><span class="pl-n">b</span><span class="pl-p">;</span><span class="pl-n">j</span><span class="pl-o">++</span><span class="pl-p">){</span>
+                <span class="pl-n">sum</span><span class="pl-o">+=</span><span class="pl-n">data</span><span class="pl-p">[</span><span class="pl-n">j</span><span class="pl-p">];</span>
+            <span class="pl-p">}</span>
+            <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%lld</span><span class="pl-se">\n</span><span class="pl-s">&quot;</span><span class="pl-p">,</span><span class="pl-n">sum</span><span class="pl-p">);</span>
+        <span class="pl-p">}</span>
+    <span class="pl-p">}</span>
+    <span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

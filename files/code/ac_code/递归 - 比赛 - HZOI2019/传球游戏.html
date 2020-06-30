@@ -1,0 +1,25 @@
+<title>传球游戏</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cm">/*</span>
+<span class="pl-cm">4 4</span>
+<span class="pl-cm">*/</span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;cstdio&gt;</span><span class="pl-cp"></span>
+<span class="pl-kt">int</span> <span class="pl-n">n</span><span class="pl-p">;</span>
+<span class="pl-kt">int</span> <span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-mi">31</span><span class="pl-p">][</span><span class="pl-mi">31</span><span class="pl-p">];</span>
+<span class="pl-kt">int</span> <span class="pl-nf">f</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-p">,</span><span class="pl-kt">int</span> <span class="pl-n">m</span><span class="pl-p">){</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">i</span><span class="pl-o">==</span><span class="pl-mi">1</span> <span class="pl-o">&amp;&amp;</span> <span class="pl-n">m</span><span class="pl-o">==</span><span class="pl-mi">0</span><span class="pl-p">)</span><span class="pl-k">return</span> <span class="pl-mi">1</span><span class="pl-p">;</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">m</span><span class="pl-o">&lt;=</span><span class="pl-mi">0</span><span class="pl-p">)</span><span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+        <span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">m</span><span class="pl-p">])</span><span class="pl-k">return</span> <span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">m</span><span class="pl-p">];</span>
+        <span class="pl-cm">/*if(i&lt;=0||m&gt;n){</span>
+<span class="pl-cm">                printf(&quot;[%d]&quot;,i);</span>
+<span class="pl-cm">                return 0;</span>
+<span class="pl-cm">        }*/</span>
+        <span class="pl-k">return</span> <span class="pl-n">s</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">][</span><span class="pl-n">m</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">f</span><span class="pl-p">(((</span><span class="pl-n">i</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-o">&lt;=</span><span class="pl-mi">0</span><span class="pl-p">)</span><span class="pl-o">?</span><span class="pl-nl">n</span><span class="pl-p">:(</span><span class="pl-n">i</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">)),</span><span class="pl-n">m</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">)</span><span class="pl-o">+</span><span class="pl-n">f</span><span class="pl-p">(((</span><span class="pl-n">i</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-o">&gt;</span><span class="pl-n">n</span><span class="pl-p">)</span><span class="pl-o">?</span><span class="pl-mi">1</span><span class="pl-o">:</span><span class="pl-n">i</span><span class="pl-o">+</span><span class="pl-mi">1</span><span class="pl-p">),</span><span class="pl-n">m</span><span class="pl-o">-</span><span class="pl-mi">1</span><span class="pl-p">);</span>
+<span class="pl-p">}</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+        <span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;pass.in&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;r&quot;</span><span class="pl-p">,</span><span class="pl-n">stdin</span><span class="pl-p">);</span>
+        <span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;pass.out&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;w&quot;</span><span class="pl-p">,</span><span class="pl-n">stdout</span><span class="pl-p">);</span>
+        <span class="pl-kt">int</span> <span class="pl-n">m</span><span class="pl-p">;</span>
+        <span class="pl-n">scanf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d%d&quot;</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">n</span><span class="pl-p">,</span><span class="pl-o">&amp;</span><span class="pl-n">m</span><span class="pl-p">);</span>
+        <span class="pl-n">printf</span><span class="pl-p">(</span><span class="pl-s">&quot;%d&quot;</span><span class="pl-p">,</span><span class="pl-n">f</span><span class="pl-p">(</span><span class="pl-mi">1</span><span class="pl-p">,</span><span class="pl-n">m</span><span class="pl-p">));</span>
+        <span class="pl-k">return</span> <span class="pl-mi">0</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>

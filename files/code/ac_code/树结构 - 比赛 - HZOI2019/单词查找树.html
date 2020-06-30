@@ -1,0 +1,41 @@
+<title>单词查找树</title><link href="http://hzoi.com/tomorrow.css" rel="stylesheet"><div class="ui existing segment"><pre><code><span class="pl-cm">/*</span>
+<span class="pl-cm">A</span>
+<span class="pl-cm">AN</span>
+<span class="pl-cm">ASP</span>
+<span class="pl-cm">AS</span>
+<span class="pl-cm">ASC</span>
+<span class="pl-cm">ASCII</span>
+<span class="pl-cm">BAS</span>
+<span class="pl-cm">BASIC</span>
+<span class="pl-cm">*/</span>
+
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;iostream&gt;</span><span class="pl-cp"></span>
+<span class="pl-cp">#include</span><span class="pl-cpf">&lt;string&gt;</span><span class="pl-cp"></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-n">std</span><span class="pl-p">;</span>
+<span class="pl-kt">int</span> <span class="pl-n">noden</span><span class="pl-o">=</span><span class="pl-mi">1</span><span class="pl-p">;</span>
+<span class="pl-k">struct</span> <span class="pl-n">node</span><span class="pl-p">{</span>
+	<span class="pl-n">node</span> <span class="pl-o">*</span> <span class="pl-n">c</span><span class="pl-p">[</span><span class="pl-mi">26</span><span class="pl-p">];</span>
+	<span class="pl-n">node</span><span class="pl-p">(){</span>
+		<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;</span><span class="pl-mi">26</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">)</span><span class="pl-n">c</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-nb">NULL</span><span class="pl-p">;</span>
+	<span class="pl-p">}</span>
+<span class="pl-p">};</span>
+<span class="pl-kt">int</span> <span class="pl-nf">main</span><span class="pl-p">(){</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;wordtree.in&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;r&quot;</span><span class="pl-p">,</span><span class="pl-n">stdin</span><span class="pl-p">);</span>
+	<span class="pl-n">freopen</span><span class="pl-p">(</span><span class="pl-s">&quot;wordtree.out&quot;</span><span class="pl-p">,</span><span class="pl-s">&quot;w&quot;</span><span class="pl-p">,</span><span class="pl-n">stdout</span><span class="pl-p">);</span>
+	<span class="pl-n">string</span> <span class="pl-n">l</span><span class="pl-p">;</span>
+	<span class="pl-n">node</span> <span class="pl-o">*</span> <span class="pl-n">head</span><span class="pl-o">=</span><span class="pl-k">new</span> <span class="pl-n">node</span><span class="pl-p">;</span>
+	<span class="pl-k">while</span><span class="pl-p">(</span><span class="pl-n">cin</span><span class="pl-o">&gt;&gt;</span><span class="pl-n">l</span><span class="pl-p">){</span>
+		<span class="pl-n">node</span> <span class="pl-o">*</span> <span class="pl-n">now</span><span class="pl-o">=</span><span class="pl-n">head</span><span class="pl-p">;</span>
+		<span class="pl-k">for</span><span class="pl-p">(</span><span class="pl-kt">int</span> <span class="pl-n">i</span><span class="pl-o">=</span><span class="pl-mi">0</span><span class="pl-p">;</span><span class="pl-n">i</span><span class="pl-o">&lt;</span><span class="pl-n">l</span><span class="pl-p">.</span><span class="pl-n">size</span><span class="pl-p">();</span><span class="pl-n">i</span><span class="pl-o">++</span><span class="pl-p">){</span>
+			<span class="pl-kt">int</span> <span class="pl-n">ci</span><span class="pl-o">=</span><span class="pl-n">l</span><span class="pl-p">[</span><span class="pl-n">i</span><span class="pl-p">]</span><span class="pl-o">-</span><span class="pl-sc">&#39;A&#39;</span><span class="pl-p">;</span>
+			<span class="pl-k">if</span><span class="pl-p">(</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">c</span><span class="pl-p">[</span><span class="pl-n">ci</span><span class="pl-p">]</span><span class="pl-o">==</span><span class="pl-nb">NULL</span><span class="pl-p">){</span>
+				<span class="pl-n">node</span><span class="pl-o">*</span> <span class="pl-n">n</span><span class="pl-o">=</span><span class="pl-k">new</span> <span class="pl-n">node</span><span class="pl-p">;</span>
+				<span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">c</span><span class="pl-p">[</span><span class="pl-n">ci</span><span class="pl-p">]</span><span class="pl-o">=</span><span class="pl-n">n</span><span class="pl-p">;</span>
+				<span class="pl-n">noden</span><span class="pl-o">++</span><span class="pl-p">;</span>
+			<span class="pl-p">}</span>
+			<span class="pl-n">now</span><span class="pl-o">=</span><span class="pl-n">now</span><span class="pl-o">-&gt;</span><span class="pl-n">c</span><span class="pl-p">[</span><span class="pl-n">ci</span><span class="pl-p">];</span>
+		<span class="pl-p">}</span>
+	<span class="pl-p">}</span>
+	<span class="pl-n">cout</span><span class="pl-o">&lt;&lt;</span><span class="pl-n">noden</span><span class="pl-p">;</span>
+<span class="pl-p">}</span>
+</cpde></pre></div>
